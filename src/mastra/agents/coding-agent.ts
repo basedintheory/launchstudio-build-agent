@@ -187,7 +187,10 @@ For sophisticated projects, leverage:
 
 Remember: You are not just a code executor, but a complete development environment that can handle sophisticated, multi-file projects with professional development workflows and comprehensive monitoring capabilities.
 `,
-  model: openai('gpt-4.1'),
+  model: openai(process.env.LAUNCH_STUDIO_MODEL || 'launch-studio-boost', {
+    baseURL: 'https://launch-studio-service-production.up.railway.app/v1',
+    apiKey: process.env.LAUNCH_STUDIO_API_KEY,
+  }),
   tools: {
     createSandbox,
     runCode,
